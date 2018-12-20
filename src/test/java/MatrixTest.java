@@ -1,3 +1,5 @@
+import org.benica.matrix.Matrix;
+import org.benica.rational.Rational;
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
