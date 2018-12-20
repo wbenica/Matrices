@@ -43,10 +43,20 @@ public class Rational {
                         rhs.den );
     }
 
+    public Rational plus ( int rhs ) {
+
+        return this.plus ( new Rational ( rhs ) );
+    }
+
     public Rational minus ( Rational rhs ) {
 
         return new Rational ( this.num * rhs.den - rhs.num * this.den, this
                 .den * rhs.den );
+    }
+
+    public Rational minus ( int rhs ) {
+
+        return this.minus ( new Rational ( rhs ) );
     }
 
     public Rational times ( Rational rhs ) {
@@ -54,9 +64,19 @@ public class Rational {
         return new Rational ( this.num * rhs.num, this.den * rhs.den );
     }
 
+    public Rational times ( int rhs ) {
+
+        return this.times ( new Rational ( rhs ) );
+    }
+
     public Rational divide ( Rational rhs ) {
 
         return new Rational ( this.num * rhs.den, this.den * rhs.num );
+    }
+
+    public Rational divide ( int rhs ) {
+
+        return this.divide ( new Rational ( rhs ) );
     }
 
     @Override

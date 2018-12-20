@@ -70,4 +70,31 @@ public class RationalTest {
         assertEquals ( 105, test.hashCode ( ) );
     }
 
+    @Test
+    public void plus1 ( ) {
+
+        Rational test = new Rational ( 0, 4 );
+        assertEquals ( test.plus ( 2 ), new Rational ( 2 ) );
+    }
+
+    @Test
+    public void minus1 ( ) {
+
+        Rational test = new Rational ( 24, 6 );
+        assertEquals ( test.minus ( 1 ), new Rational ( 3 ) );
+    }
+
+    @Test
+    public void times1 ( ) {
+
+        Rational test = new Rational ( 33, 7 );
+        assertEquals ( test.times ( 4 ), new Rational ( 132, 7 ) );
+    }
+
+    @Test
+    public void divide1 ( ) {
+
+        Rational test = new Rational ( 33, 7 );
+        assertEquals ( test.divide ( 4 ), new Rational ( 33, 28 ) );
+    }
 }
