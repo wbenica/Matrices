@@ -71,6 +71,9 @@ public class Rational {
     private static int gcd ( int l, int r ) {
 
         if ( l == r ) {
+            if ( l == 0 ) {
+                throw new IllegalArgumentException ( );
+            }
             return l;
         }
         else {
