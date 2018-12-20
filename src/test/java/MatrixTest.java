@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class MatrixTest {
@@ -37,7 +38,7 @@ public class MatrixTest {
     @Test
     public void getRow ( ) {
 
-        assertEquals ( test.getRow ( 2 ), new Rational[] {
+        assertArrayEquals ( test.getRow ( 2 ), new Rational[] {
                 new Rational ( 5 ), new Rational ( 6 )
         } );
     }
@@ -45,7 +46,7 @@ public class MatrixTest {
     @Test
     public void getCol ( ) {
 
-        assertEquals ( test.getCol ( 0 ), new Rational[] {
+        assertArrayEquals ( test.getCol ( 0 ), new Rational[] {
                 new Rational ( 1 ), new Rational ( 3 ), new Rational ( 5 ),
                 new Rational ( 7 ), new Rational ( 9 )
         } );
