@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class RationalTest {
 
@@ -57,5 +58,16 @@ public class RationalTest {
         Rational lhs = new Rational ( 5, 25 );
         Rational rhs = new Rational ( 1, 5 );
         assertEquals ( lhs, rhs );
+        assertEquals ( lhs, lhs );
+        Rational badTest = new Rational ( 2, 5 );
+        assertNotEquals ( badTest, rhs );
     }
+
+    @Test
+    public void testHashCode ( ) {
+
+        Rational test = new Rational ( 5, 25 );
+        assertEquals ( 105, test.hashCode ( ) );
+    }
+
 }

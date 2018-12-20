@@ -1,6 +1,7 @@
 public class Rational {
 
-    private int num, den;
+    private int     num;
+    private int     den;
     private boolean isInteger;
 
     @Override
