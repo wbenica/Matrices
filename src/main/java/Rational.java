@@ -3,6 +3,12 @@ public class Rational {
     private int num, den;
     private boolean isInteger;
 
+    @Override
+    public int hashCode ( ) {
+
+        return this.num * 100 + den;
+    }
+
     public Rational ( int n, int d ) {
 
         if ( d == 0 ) {
