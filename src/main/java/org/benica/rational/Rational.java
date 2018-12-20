@@ -1,3 +1,5 @@
+package org.benica.rational;
+
 public class Rational {
 
     private int     num;

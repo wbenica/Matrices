@@ -1,3 +1,7 @@
+package org.benica.matrix;
+
+import org.benica.rational.Rational;
+
 public class Matrix {
 
     private Rational[][] theMatrix;
@@ -19,6 +23,17 @@ public class Matrix {
             for ( int col = 0; col < this.getNumCols ( ); col++ ) {
                 this.theMatrix[ row ][ col ] = values[ row * this.getNumCols
                         ( ) + col ];
+            }
+        }
+    }
+
+    public Matrix ( int numRows, int[] values ) {
+
+        this ( numRows, values.length / numRows );
+        for ( int row = 0; row < numRows; row++ ) {
+            for ( int col = 0; col < this.getNumCols ( ); col++ ) {
+                this.theMatrix[ row ][ col ] = new Rational ( values[ row * this
+                        .getNumCols ( ) + col ] );
             }
         }
     }
