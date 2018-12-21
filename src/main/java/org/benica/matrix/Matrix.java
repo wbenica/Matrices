@@ -5,8 +5,11 @@ import org.benica.rational.Rational;
 public class Matrix {
 
     private Rational[][] theMatrix;
+    private Rational[][] refMatrix;
+    private Rational[][] rrefMatrix;
 
-    public Matrix ( int numRows, int numCols ) {
+    public Matrix ( int numRows,
+                    int numCols ) {
 
         theMatrix = new Rational[ numRows ][ numCols ];
         for ( int row = 0; row < numRows; row++ ) {
@@ -16,7 +19,8 @@ public class Matrix {
         }
     }
 
-    public Matrix ( int numRows, Rational[] values ) {
+    public Matrix ( int numRows,
+                    Rational[] values ) {
 
         this ( numRows, values.length / numRows );
         for ( int row = 0; row < numRows; row++ ) {
@@ -27,7 +31,25 @@ public class Matrix {
         }
     }
 
-    public Matrix ( int numRows, int[] values ) {
+    public Matrix ( Rational[][] values ) {
+
+        this.theMatrix = values;
+    }
+
+    public Matrix ( int[][] values ) {
+
+        this.theMatrix = new Rational[ values.length ][ values[ 0 ]
+                .length ];
+        for ( int row = 0; row < this.getNumRows ( ); row++ ) {
+            for ( int col = 0; col < this.getNumCols ( ); col++ ) {
+                this.theMatrix[ row ][ col ] = new Rational ( values[ row ][
+                        col ] );
+            }
+        }
+    }
+
+    public Matrix ( int numRows,
+                    int[] values ) {
 
         this ( numRows, values.length / numRows );
         for ( int row = 0; row < numRows; row++ ) {
@@ -35,6 +57,69 @@ public class Matrix {
                 this.theMatrix[ row ][ col ] = new Rational ( values[ row * this
                         .getNumCols ( ) + col ] );
             }
+        }
+    }
+
+    @Override
+    public int hashCode ( ) {
+
+        return super.hashCode ( );
+    }
+
+    @Override
+    public boolean equals ( Object obj ) {
+
+        if ( obj == this ) {
+            return true;
+        }
+        else if ( obj == null ) {
+            return false;
+        }
+        else if ( obj instanceof Matrix ) {
+            int lhsRows = this.getNumRows ( );
+            int lhsCols = this.getNumCols ( );
+            int rhsRows = ( ( Matrix ) obj ).getNumRows ( );
+            int rhsCols = ( ( Matrix ) obj ).getNumCols ( );
+
+            if ( lhsRows == rhsRows && lhsCols == rhsCols ) {
+
+                for ( int row = 0; row < lhsRows; row++ ) {
+                    for ( int col = 0; col < lhsCols; col++ ) {
+                        if ( !( ( ( Matrix ) obj ).get ( row, col ).equals (
+                                this.get ( row, col ) ) ) ) {
+                            return false;
+                        }
+                    }
+                }
+
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+
+    public Matrix add ( Matrix rhs ) throws IllegalArgumentException {
+
+        if ( this.getNumRows ( ) != rhs.getNumRows ( ) ||
+                this.getNumCols ( ) != rhs.getNumCols ( ) ) {
+            throw new IllegalArgumentException ( "Matrices must be the same " +
+                    "size to add" );
+        }
+        else {
+            Rational[][] sum = new Rational[ this.getNumRows ( ) ][ this
+                    .getNumCols ( ) ];
+            for ( int row = 0; row < this.getNumRows ( ); row++ ) {
+                for ( int col = 0; col < this.getNumCols ( ); col++ ) {
+                    sum[ row ][ col ] = this.get ( row, col ).plus ( rhs.get (
+                            row, col ) );
+                }
+            }
+            return new Matrix ( sum );
         }
     }
 
@@ -48,7 +133,8 @@ public class Matrix {
         return theMatrix.length;
     }
 
-    public Rational get ( int row, int col ) {
+    public Rational get ( int row,
+                          int col ) {
 
         return theMatrix[ row ][ col ];
     }

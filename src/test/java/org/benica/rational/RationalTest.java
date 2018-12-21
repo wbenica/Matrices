@@ -1,4 +1,5 @@
-import org.benica.rational.Rational;
+package org.benica.rational;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

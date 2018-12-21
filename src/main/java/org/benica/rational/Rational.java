@@ -88,6 +88,12 @@ public class Rational {
             return true;
         }
 
+        if ( obj instanceof Integer ) {
+            return ( obj.equals ( this.getNum ( ) ) && this
+                    .getDen ( )
+                    == 1 );
+        }
+
         if ( obj instanceof Rational ) {
             return ( ( ( Rational ) obj ).getNum ( ) == this.getNum ( ) &&
                     ( ( Rational ) obj ).getDen ( ) == this.getDen ( ) );
