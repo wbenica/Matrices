@@ -2,8 +2,8 @@ package org.benica.rational;
 
 public class Rational {
 
-    private int     num;
-    private int     den;
+    private Integer num;
+    private Integer den;
     private boolean isInteger;
 
     @Override
@@ -28,12 +28,12 @@ public class Rational {
         this ( n, 1 );
     }
 
-    public int getNum ( ) {
+    public Integer getNum ( ) {
 
         return num;
     }
 
-    public int getDen ( ) {
+    public Integer getDen ( ) {
 
         return den;
     }
@@ -41,8 +41,7 @@ public class Rational {
     public Rational plus ( Rational rhs ) {
 
         return new Rational ( this.num * rhs.den + rhs.num * this.den,
-                this.den *
-                        rhs.den );
+                this.den * rhs.den );
     }
 
     public Rational plus ( int rhs ) {
@@ -95,8 +94,10 @@ public class Rational {
         }
 
         if ( obj instanceof Rational ) {
-            return ( ( ( Rational ) obj ).getNum ( ) == this.getNum ( ) &&
-                    ( ( Rational ) obj ).getDen ( ) == this.getDen ( ) );
+            return ( ( ( Rational ) obj ).getNum ( )
+                    .equals ( this.getNum ( ) ) &&
+                    ( ( Rational ) obj ).getDen ( )
+                            .equals ( this.getDen ( ) ) );
         }
         else {
             return false;

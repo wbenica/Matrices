@@ -36,18 +36,6 @@ public class Matrix {
         this.theMatrix = values;
     }
 
-    public Matrix ( int[][] values ) {
-
-        this.theMatrix = new Rational[ values.length ][ values[ 0 ]
-                .length ];
-        for ( int row = 0; row < this.getNumRows ( ); row++ ) {
-            for ( int col = 0; col < this.getNumCols ( ); col++ ) {
-                this.theMatrix[ row ][ col ] = new Rational ( values[ row ][
-                        col ] );
-            }
-        }
-    }
-
     public Matrix ( int numRows,
                     int[] values ) {
 
@@ -60,10 +48,32 @@ public class Matrix {
         }
     }
 
+    public Matrix ( int[][] values ) {
+
+        this.theMatrix = new Rational[ values.length ][ values[ 0 ]
+                .length ];
+        for ( int row = 0; row < this.getNumRows ( ); row++ ) {
+            for ( int col = 0; col < this.getNumCols ( ); col++ ) {
+                this.theMatrix[ row ][ col ] = new Rational ( values[ row ][
+                        col ] );
+            }
+        }
+    }
+
+    public int getNumCols ( ) {
+
+        return theMatrix[ 0 ].length;
+    }
+
+    public int getNumRows ( ) {
+
+        return theMatrix.length;
+    }
+
     @Override
     public int hashCode ( ) {
 
-        return super.hashCode ( );
+        return this.getNumCols ( ) + this.getNumRows ( );
     }
 
     @Override
@@ -121,16 +131,6 @@ public class Matrix {
             }
             return new Matrix ( sum );
         }
-    }
-
-    public int getNumCols ( ) {
-
-        return theMatrix[ 0 ].length;
-    }
-
-    public int getNumRows ( ) {
-
-        return theMatrix.length;
     }
 
     public Rational get ( int row,
