@@ -5,8 +5,9 @@ import org.benica.rational.Rational;
 public class Matrix {
 
     private Rational[][] theMatrix;
-    private Rational[][] refMatrix;
-    private Rational[][] rrefMatrix;
+    // private Rational[][] refMatrix;
+    // private Rational[][] rrefMatrix;
+    private Size         size;
 
     public Matrix ( int numRows,
                     int numCols ) {
@@ -17,6 +18,7 @@ public class Matrix {
                 theMatrix[ row ][ col ] = new Rational ( 0, 1 );
             }
         }
+        size = new Size ( numRows, numCols );
     }
 
     public Matrix ( int numRows,
@@ -62,12 +64,12 @@ public class Matrix {
 
     public int getNumCols ( ) {
 
-        return theMatrix[ 0 ].length;
+        return this.size.numCols;
     }
 
     public int getNumRows ( ) {
 
-        return theMatrix.length;
+        return this.size.numRows;
     }
 
     @Override
@@ -86,15 +88,10 @@ public class Matrix {
             return false;
         }
         else if ( obj instanceof Matrix ) {
-            int lhsRows = this.getNumRows ( );
-            int lhsCols = this.getNumCols ( );
-            int rhsRows = ( ( Matrix ) obj ).getNumRows ( );
-            int rhsCols = ( ( Matrix ) obj ).getNumCols ( );
+            if ( this.sameSize ( ( Matrix ) obj ) ) {
 
-            if ( lhsRows == rhsRows && lhsCols == rhsCols ) {
-
-                for ( int row = 0; row < lhsRows; row++ ) {
-                    for ( int col = 0; col < lhsCols; col++ ) {
+                for ( int row = 0; row < this.getNumRows ( ); row++ ) {
+                    for ( int col = 0; col < this.getNumCols ( ); col++ ) {
                         if ( !( ( ( Matrix ) obj ).get ( row, col ).equals (
                                 this.get ( row, col ) ) ) ) {
                             return false;
@@ -113,7 +110,13 @@ public class Matrix {
         }
     }
 
-    public Matrix add ( Matrix rhs ) throws IllegalArgumentException {
+    public boolean sameSize ( Matrix rhs ) {
+
+        return ( this.getNumRows ( ) == rhs.getNumRows ( ) &&
+                this.getNumCols ( ) == rhs.getNumCols ( ) );
+    }
+
+    public Matrix add ( Matrix rhs ) {
 
         if ( this.getNumRows ( ) != rhs.getNumRows ( ) ||
                 this.getNumCols ( ) != rhs.getNumCols ( ) ) {
@@ -151,5 +154,18 @@ public class Matrix {
             newCol[ row ] = theMatrix[ row ][ col ];
         }
         return newCol;
+    }
+
+    private class Size {
+
+        Integer numRows;
+        Integer numCols;
+
+        Size ( Integer rows,
+               Integer cols ) {
+
+            this.numRows = rows;
+            this.numCols = cols;
+        }
     }
 }
