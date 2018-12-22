@@ -50,7 +50,7 @@ public class RationalTest {
     public void getNum ( ) {
 
         Rational test = new Rational ( 3, 4 );
-        assertEquals ( test.getNum (), 3 );
+        assertEquals ( test.getNum ( ), new Integer ( 3 ) );
 
     }
 
@@ -58,7 +58,7 @@ public class RationalTest {
     public void getDen ( ) {
 
         Rational test = new Rational ( 3, 4 );
-        assertEquals ( test.getDen (), 4 );
+        assertEquals ( test.getDen ( ), new Integer ( 4 ) );
     }
 
     @Test
@@ -70,6 +70,8 @@ public class RationalTest {
         assertEquals ( lhs, lhs );
         Rational badTest = new Rational ( 2, 5 );
         assertNotEquals ( badTest, rhs );
+
+        assertEquals ( new Rational ( 4, 2 ), new Integer ( 2 ) );
     }
 
     @Test
@@ -105,5 +107,18 @@ public class RationalTest {
 
         Rational test = new Rational ( 33, 7 );
         assertEquals ( test.divide ( 4 ), new Rational ( 33, 28 ) );
+    }
+
+    @Test
+    public void hashTest ( ) {
+
+        Rational test = new Rational ( 5, 2 );
+        assertEquals ( 502, test.hashCode ( ) );
+    }
+
+    @Test( expected = IllegalArgumentException.class )
+    public void zeroDenominatorTest ( ) {
+
+        Rational test = new Rational ( 5, 0 );
     }
 }
