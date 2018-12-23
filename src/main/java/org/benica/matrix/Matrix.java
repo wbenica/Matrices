@@ -87,20 +87,19 @@ public class Matrix {
         else if ( obj == null ) {
             return false;
         }
-        else if ( obj instanceof Matrix ) {
-            if ( this.sameSize ( ( Matrix ) obj ) ) {
+        else if ( obj instanceof Matrix &&
+                this.sameSize ( ( Matrix ) obj ) ) {
 
-                for ( int row = 0; row < this.getNumRows ( ); row++ ) {
-                    for ( int col = 0; col < this.getNumCols ( ); col++ ) {
-                        if ( !( ( ( Matrix ) obj ).get ( row, col ).equals (
-                                this.get ( row, col ) ) ) ) {
-                            return false;
-                        }
+            for ( int row = 0; row < this.getNumRows ( ); row++ ) {
+                for ( int col = 0; col < this.getNumCols ( ); col++ ) {
+                    if ( !( ( ( Matrix ) obj ).get ( row, col ).equals (
+                            this.get ( row, col ) ) ) ) {
+                        return false;
                     }
                 }
-
-                return true;
             }
+
+            return true;
         }
 
         return false;
@@ -114,8 +113,7 @@ public class Matrix {
 
     public Matrix add ( Matrix rhs ) {
 
-        if ( this.getNumRows ( ) != rhs.getNumRows ( ) ||
-                this.getNumCols ( ) != rhs.getNumCols ( ) ) {
+        if ( !this.sameSize ( rhs ) ) {
             throw new IllegalArgumentException ( "Matrices must be the same " +
                     "size to add" );
         }
