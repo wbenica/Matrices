@@ -101,10 +101,9 @@ public class Matrix {
 
             return true;
         }
-    }
 
         return false;
-}
+    }
 
     public boolean sameSize ( Matrix rhs ) {
 
@@ -151,16 +150,16 @@ public class Matrix {
         return newCol;
     }
 
-private class Size {
+    private class Size {
 
-    Integer numRows;
-    Integer numCols;
+        Integer numRows;
+        Integer numCols;
 
-    Size ( Integer rows,
-           Integer cols ) {
+        Size ( Integer rows,
+               Integer cols ) {
 
-        this.numRows = rows;
-        this.numCols = cols;
+            this.numRows = rows;
+            this.numCols = cols;
+        }
     }
-}
 }
