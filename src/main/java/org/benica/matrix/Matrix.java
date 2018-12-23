@@ -35,6 +35,7 @@ public class Matrix {
 
     public Matrix ( Rational[][] values ) {
 
+        this ( values.length, values[ 0 ].length );
         this.theMatrix = values;
     }
 
@@ -52,8 +53,7 @@ public class Matrix {
 
     public Matrix ( int[][] values ) {
 
-        this.theMatrix = new Rational[ values.length ][ values[ 0 ]
-                .length ];
+        this ( values.length, values[ 0 ].length );
         for ( int row = 0; row < this.getNumRows ( ); row++ ) {
             for ( int col = 0; col < this.getNumCols ( ); col++ ) {
                 this.theMatrix[ row ][ col ] = new Rational ( values[ row ][
