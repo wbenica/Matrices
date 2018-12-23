@@ -1,6 +1,6 @@
 package org.benica.rational;
 
-public class Rational {
+public class Rational implements Comparable<Rational> {
 
     private Integer num;
     private Integer den;
@@ -104,7 +104,13 @@ public class Rational {
         }
     }
 
-    private static int gcd ( int l, int r ) {
+    public int compareTo ( Rational o ) {
+
+        return this.getNum ( ) * o.getDen ( ) - o.getNum ( ) * this.getDen ( );
+    }
+
+    static int gcd ( int l,
+                     int r ) {
 
         if ( l == r ) {
             if ( l == 0 ) {
