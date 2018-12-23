@@ -101,13 +101,9 @@ public class Matrix {
 
                 return true;
             }
-            else {
-                return false;
-            }
         }
-        else {
-            return false;
-        }
+
+        return false;
     }
 
     public boolean sameSize ( Matrix rhs ) {
