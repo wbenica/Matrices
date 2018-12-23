@@ -4,15 +4,9 @@ public class Rational implements Comparable<Rational> {
 
     private Integer num;
     private Integer den;
-    private boolean isInteger;
 
-    @Override
-    public int hashCode ( ) {
-
-        return this.num * 100 + den;
-    }
-
-    public Rational ( int n, int d ) {
+    public Rational ( int n,
+                      int d ) {
 
         if ( d == 0 ) {
             throw new IllegalArgumentException ( );
@@ -20,7 +14,6 @@ public class Rational implements Comparable<Rational> {
         int gcd = gcd ( n, d );
         this.num = n / gcd;
         this.den = d / gcd;
-        this.isInteger = ( den == 1 );
     }
 
     public Rational ( int n ) {
@@ -36,6 +29,42 @@ public class Rational implements Comparable<Rational> {
     public Integer getDen ( ) {
 
         return den;
+    }
+
+    public boolean isInteger ( ) {
+
+        return den == 1;
+
+    }
+
+    @Override
+    public int hashCode ( ) {
+
+        return this.num * 100 + den;
+    }
+
+    @Override
+    public boolean equals ( Object obj ) {
+
+        if ( obj == this ) {
+            return true;
+        }
+
+        if ( obj instanceof Integer ) {
+            return ( obj.equals ( this.getNum ( ) ) && this
+                    .getDen ( )
+                    == 1 );
+        }
+
+        if ( obj instanceof Rational ) {
+            return ( ( ( Rational ) obj ).getNum ( )
+                    .equals ( this.getNum ( ) ) &&
+                    ( ( Rational ) obj ).getDen ( )
+                            .equals ( this.getDen ( ) ) );
+        }
+        else {
+            return false;
+        }
     }
 
     public Rational plus ( Rational rhs ) {
@@ -78,30 +107,6 @@ public class Rational implements Comparable<Rational> {
     public Rational divide ( int rhs ) {
 
         return this.divide ( new Rational ( rhs ) );
-    }
-
-    @Override
-    public boolean equals ( Object obj ) {
-
-        if ( obj == this ) {
-            return true;
-        }
-
-        if ( obj instanceof Integer ) {
-            return ( obj.equals ( this.getNum ( ) ) && this
-                    .getDen ( )
-                    == 1 );
-        }
-
-        if ( obj instanceof Rational ) {
-            return ( ( ( Rational ) obj ).getNum ( )
-                    .equals ( this.getNum ( ) ) &&
-                    ( ( Rational ) obj ).getDen ( )
-                            .equals ( this.getDen ( ) ) );
-        }
-        else {
-            return false;
-        }
     }
 
     public int compareTo ( Rational o ) {

@@ -137,4 +137,11 @@ public class RationalTest {
 
         Rational.gcd ( 0, 0 );
     }
+
+    @Test
+    public void isInteger ( ) {
+
+        assertTrue ( new Rational ( 4, 1 ).isInteger ( ) );
+        assertFalse ( new Rational ( 3, 17 ).isInteger ( ) );
+    }
 }

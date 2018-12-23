@@ -5,8 +5,6 @@ import org.benica.rational.Rational;
 public class Matrix {
 
     private Rational[][] theMatrix;
-    // private Rational[][] refMatrix;
-    // private Rational[][] rrefMatrix;
     private Size         size;
 
     public Matrix ( int numRows,
