@@ -78,6 +78,6 @@ public class MatrixTest {
     @Test
     public void hashTest ( ) {
 
-        assertEquals ( test2.hashCode ( ), 4 );
+        assertEquals ( 4, test2.hashCode ( ) );
     }
 }
